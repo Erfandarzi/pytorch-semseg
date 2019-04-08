@@ -1,0 +1,15 @@
+2019-04-03 03:07:05,272 INFO Let the games begin
+2019-04-03 03:07:05,303 INFO Using No Augmentations
+2019-04-03 03:07:05,803 INFO Using sgd optimizer
+2019-04-03 03:07:05,803 INFO Using optimizer SGD (
+Parameter Group 0
+    dampening: 0
+    lr: 1e-10
+    momentum: 0.99
+    nesterov: False
+    weight_decay: 0.0005
+)
+2019-04-03 03:07:05,803 INFO Using No LR Scheduling
+2019-04-03 03:07:05,803 INFO Using cross_entropy with {'size_average': False} params
+2019-04-03 03:07:05,803 INFO Using loss functools.partial(<function cross_entropy2d at 0x000001ED564A5268>, size_average=False)
+2019-04-03 03:07:05,803 INFO No checkpoint found at 'unet_camvid.pkl'
