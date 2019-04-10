@@ -120,7 +120,7 @@ class camvidLoader(data.Dataset):
 
 
 if __name__ == "__main__":
-    local_path = "C:/Users/Ali/PycharmProjects/pytorch-semseg/701_StillsRaw_full"
+    local_path = "content/segnet/CamVid"
     augmentations = Compose([RandomRotate(10), RandomHorizontallyFlip()])
 
     dst = camvidLoader(local_path, is_transform=True, augmentations=augmentations)
