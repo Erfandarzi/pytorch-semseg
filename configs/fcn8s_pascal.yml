@@ -6,7 +6,7 @@ data:
     val_split: val
     img_rows: 'same'
     img_cols: 'same'
-    path: content/segnet/CamVid
+    path: /content/segnet/CamVid
 training:
     train_iters: 5
     batch_size: 1
