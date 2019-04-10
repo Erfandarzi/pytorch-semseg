@@ -218,7 +218,7 @@ if __name__ == "__main__":
 
     run_id = random.randint(1, 100000)
     # logdir = os.path.join("Users\Ali\PycharmProjects\pytorch-semseg\runs", os.path.basename(args.config)[:-4], str(run_id))
-    logdir = os.path.join("C:/Users/Ali/PycharmProjects/pytorch-semseg/runs")
+    logdir = os.path.join("content/pytorch-semseg/runs")
     writer = SummaryWriter(log_dir=logdir)
 
     print("RUNDIR: {}".format(logdir))
