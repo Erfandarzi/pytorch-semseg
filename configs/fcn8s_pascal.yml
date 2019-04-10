@@ -6,7 +6,7 @@ data:
     val_split: val
     img_rows: 'same'
     img_cols: 'same'
-    path: C:\Users\Ali\PycharmProjects\pytorch-semseg\701_StillsRaw_full
+    path: content\pytorch-semseg\701_StillsRaw_full
 training:
     train_iters: 5
     batch_size: 1
