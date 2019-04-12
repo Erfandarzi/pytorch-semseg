@@ -47,6 +47,7 @@ class camvidLoader(data.Dataset):
         img = m.imread(img_path)
         img = np.array(img, dtype=np.uint8)
 
+
         lbl = m.imread(lbl_path)
         lbl = np.array(lbl, dtype=np.int8)
 
@@ -62,16 +63,15 @@ class camvidLoader(data.Dataset):
         img = m.imresize(img, (self.img_size[0], self.img_size[1]))  # uint8 with RGB mode
         img = img[:, :, ::-1]  # RGB -> BGR
         img = img.astype(np.float64)
-        img -= self.mean
-        if self.img_norm:
+        # img -= self.mean
+        # if self.img_norm:
             # Resize scales images from 0 to 255, thus we need
             # to divide by 255.0
-            img = img.astype(float) / 255.0
+            # img = img.astype(float) / 255.0
         # NHWC -> NCHW
         img = img.transpose(2, 0, 1)
-
-        img = torch.from_numpy(img).float()
-        lbl = torch.from_numpy(lbl).long()
+        img = torch.from_numpy(np.array(img,dtype=np.uint8)).long()
+        lbl = torch.from_numpy(np.array(lbl,dtype=np.uint8)).long()
         return img, lbl
 
     def decode_segmap(self, temp, plot=False):
@@ -113,23 +113,23 @@ class camvidLoader(data.Dataset):
             b[temp == l] = label_colours[l, 2]
 
         rgb = np.zeros((temp.shape[0], temp.shape[1], 3))
-        rgb[:, :, 0] = r / 255.0
-        rgb[:, :, 1] = g / 255.0
-        rgb[:, :, 2] = b / 255.0
+        rgb[:, :, 0] = r[:,:,0] / 255.0
+        rgb[:, :, 1] = g[:,:,0]/ 255.0
+        rgb[:, :, 2] = b[:,:,0]/ 255.0
         return rgb
 
 
 if __name__ == "__main__":
     local_path = "content/segnet/CamVid"
     augmentations = Compose([RandomRotate(10), RandomHorizontallyFlip()])
-
-    dst = camvidLoader(local_path, is_transform=True, augmentations=augmentations)
+    dst = camvidLoader(local_path, is_transform=True, augmentations=None)
     bs = 4
     trainloader = data.DataLoader(dst, batch_size=bs)
     for i, data_samples in enumerate(trainloader):
         imgs, labels = data_samples
         imgs = imgs.numpy()[:, ::-1, :, :]
         imgs = np.transpose(imgs, [0, 2, 3, 1])
+
         f, axarr = plt.subplots(bs, 2)
         for j in range(bs):
             axarr[j][0].imshow(imgs[j])
